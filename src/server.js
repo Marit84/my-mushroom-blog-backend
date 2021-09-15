@@ -1,16 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Router = require("./routes");
+const cors = require("cors");
 
 const app = express();
 
 app.use(express.json());
 
+app.use(cors());
+
 mongoose.connect(
-  `mongodb+srv://maritPedersen:12345@cluster0.gftza.mongodb.net/BLOG-PROJECT?retryWrites=true&w=majority`,
+  `mongodb+srv://maritPedersen:12345@cluster0.gftza.mongodb.net/listingsdb?retryWrites=true&w=majority`,
   {
     useNewUrlParser: true,
-    useFindAndModify: false,
+
     useUnifiedTopology: true,
   }
 );
@@ -26,7 +29,3 @@ app.use(Router);
 app.listen(8000, () => {
   console.log("Server is running at port 8000");
 });
-
-app.get("/hello", (req, res) => res.send("Hello"));
-app.post("/hello", (req, res) => res.send(`Hello ${req.body.name}`));
-app.get("/hello/:name", (req, res) => res.send(`Hello ${req.params.name}`));
