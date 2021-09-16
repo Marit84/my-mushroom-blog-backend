@@ -1,19 +1,22 @@
 const mongoose = require("mongoose");
 
 const ListingSchema = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
+    required: true,
   },
   image: {
     type: String,
   },
   description: {
     type: String,
+    required: true,
 
     max: 250,
   },
   edibel: {
     type: Boolean,
+    required: true,
   },
 });
 
